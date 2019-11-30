@@ -27,6 +27,7 @@ class TwoPairsHandler implements RankingHandlerInterface
         // In case of two pairs a hand will have exactly 3 unique ranks
         $uniqueRanks = array_unique($ranks);
 
+        // With 2 pairs among five cards there are 3 unique ranks
         if (count($uniqueRanks) !== 3) {
             return $this->next($hand);
         }
@@ -48,6 +49,7 @@ class TwoPairsHandler implements RankingHandlerInterface
 
         rsort($pairsRanks);
 
+        // Use the bigger pair as main value and the smaller pair as the first kicker
         [$mainCardsValue, $kickerOneValue] = $pairsRanks;
 
         return new PokerRanking($rankingValue, $mainCardsValue, $kickerOneValue, $kickerTwoValue);

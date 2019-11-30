@@ -25,6 +25,7 @@ class FlushHandler implements RankingHandlerInterface
     {
         $suits = $this->extractSuits($hand);
 
+        // In case of Flush all suits are the same
         $sameSuit = count(array_unique($suits)) === 1;
 
         if (!$sameSuit) {
@@ -33,6 +34,7 @@ class FlushHandler implements RankingHandlerInterface
 
         $ranks = $this->extractRanks($hand);
 
+        // Sort ranks biggest to smallest to use as kickers
         rsort($ranks);
 
         $rankingValue = PokerRanking::FLUSH;

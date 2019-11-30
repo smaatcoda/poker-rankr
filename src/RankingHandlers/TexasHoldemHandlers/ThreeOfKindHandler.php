@@ -26,6 +26,7 @@ class ThreeOfKindHandler implements RankingHandlerInterface
         // Count occurrences for each rank value
         $occurrences = array_count_values($ranks);
 
+        // Test for 3 cards of the same rank
         if (!in_array(3, $occurrences, false)) {
             return $this->next($hand);
         }

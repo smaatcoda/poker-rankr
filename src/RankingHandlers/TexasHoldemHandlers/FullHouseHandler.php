@@ -27,6 +27,7 @@ class FullHouseHandler implements RankingHandlerInterface
         // Count occurrences for each rank value
         $occurrences = array_count_values($ranks);
 
+        // Test for 3 of a kind and a pair
         if (!(in_array(3, $occurrences, false) && in_array(2, $occurrences, false))) {
             return $this->next($hand);
         }

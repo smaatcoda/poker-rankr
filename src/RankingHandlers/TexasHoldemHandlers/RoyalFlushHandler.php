@@ -28,6 +28,7 @@ class RoyalFlushHandler implements RankingHandlerInterface
         // Count occurrences for each suit value
         $occurrences = array_count_values($suits);
 
+        // Check if all 5 cards are of the same suit
         if (!in_array(5, $occurrences, false)) {
             return $this->next($hand);
         }

@@ -24,6 +24,7 @@ class HighCardHandler implements RankingHandlerInterface
     {
         $ranks = $this->extractRanks($hand);
 
+        // Sort biggest to smallest, use as kickers
         rsort($ranks);
 
         $rankingValue = PokerRanking::HIGH_CARD;

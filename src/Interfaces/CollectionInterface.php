@@ -55,7 +55,7 @@ interface CollectionInterface
     public static function fromArray(array $data);
 
     /**
-     * Recursively transforms collection and its contents into array.
+     * Recursively converts collection and its contents into array.
      *
      * @return array
      */

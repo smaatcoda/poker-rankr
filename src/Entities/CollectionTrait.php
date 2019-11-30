@@ -17,7 +17,7 @@ trait CollectionTrait
     protected $values;
 
     /**
-     * Recursively transforms collection and its contents into array.
+     * Recursively converts collection and its contents into array.
      *
      * @return array
      */
