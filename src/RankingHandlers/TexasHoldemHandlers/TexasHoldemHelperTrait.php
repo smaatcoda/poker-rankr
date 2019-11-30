@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace SmaatCoda\PokerRankr\RankingHandlers\TexasHoldemHandlers;
 
@@ -8,12 +7,13 @@ use SmaatCoda\PokerRankr\Entities\PokerHand;
 
 /**
  * Trait TexasHoldemHandlerTrait
+ *
  * @package PokerRankr\PokerRankr\RankingHandlers\TexasHoldemHandlers
  */
 trait TexasHoldemHelperTrait
 {
     /**
-     * Determines whether or not an array contains strictly consecutive ranks (n, n+1, n+2)
+     * Determines whether or not an array contains strictly consecutive ranks (n, n+1, n+2).
      *
      * @param $ranks
      * @return bool
@@ -35,6 +35,8 @@ trait TexasHoldemHelperTrait
     }
 
     /**
+     * Returns an array of rank values of a hand.
+     *
      * @param PokerHand $hand
      * @return array
      */
@@ -47,6 +49,8 @@ trait TexasHoldemHelperTrait
     }
 
     /**
+     * Returns an array of suit values of a hand.
+     *
      * @param PokerHand $hand
      * @return array
      */

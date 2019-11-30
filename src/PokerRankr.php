@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SmaatCoda\PokerRankr;
 
@@ -9,17 +9,19 @@ use SmaatCoda\PokerRankr\Interfaces\RankingHandlerInterface;
 
 /**
  * Class PokerRankr
+ *
  * @package SmaatCoda\PokerRankr
  */
 class PokerRankr
 {
     /**
-     * @var RankingHandlerInterface
+     * @var RankingHandlerInterface The first handler to be called.
      */
     protected $lead;
 
     /**
      * PokerRankr constructor.
+     *
      * @param array $handlers
      * @throws Exception
      */
@@ -32,10 +34,17 @@ class PokerRankr
         /** @var RankingHandlerInterface $previous */
         $previous = null;
         foreach ($handlers as $handler) {
+            $interfaces = class_implements($handler);
+
+            if (!isset($interfaces[RankingHandlerInterface::class])) {
+                throw new Exception($handler . ' must implement ' . RankingHandlerInterface::class . '!');
+            }
+
             if ($previous === null) {
                 $this->lead = $previous = new $handler();
                 continue;
             }
+
             $handler = new $handler();
             $previous->setSuccessor($handler);
             $previous = $handler;
@@ -43,56 +52,36 @@ class PokerRankr
     }
 
     /**
+     * Returns a hand's ranking as well as attaches it to the hand behind the scenes.
      * @param PokerHand $hand
-     * @return PokerHand
+     * @return PokerRanking
      * @throws Exception
      */
-    public function evaluateHand(PokerHand $hand): PokerHand
+    public function evaluateHand(PokerHand $hand): PokerRanking
     {
         if ($hand->count() !== 5) {
             throw new Exception('Every hand must contain exactly 5 cards!');
         }
-        $hand->setRanking($this->lead->handle($hand));
 
-        return $hand;
+        return $hand->getRanking() ?: $this->lead->handle($hand);
     }
 
     /**
+     * Sorts hands in a collection according to their rankings (strongest to weakest).
+     *
      * @param PokerHandCollection $hands
+     *
      * @return PokerHandCollection
-     * @throws Exception
-     */
-    public function evaluateHands(PokerHandCollection $hands): PokerHandCollection
-    {
-        foreach ($hands as $hand) {
-            $this->evaluateHand($hand);
-        }
-
-        return $hands;
-    }
-
-    /**
-     * @param PokerHandCollection $hands
-     * @return PokerHandCollection
-     * @throws Exception
      */
     public function sortHands(PokerHandCollection $hands): PokerHandCollection
     {
-        $hands = $this->evaluateHands($hands);
-
         $hands->sort(function (PokerHand $previous, PokerHand $next) {
-            if (!$next->getRanking()) {
-                $next = $this->evaluateHand($next);
-            }
+            $previousRanking = $this->evaluateHand($previous);
+            $nextRanking     = $this->evaluateHand($next);
 
-            if (!$previous->getRanking()) {
-                $previous = $this->evaluateHand($previous);
-            }
-
-            return $next->getRanking()->beats($previous->getRanking());
+            return $nextRanking->beats($previousRanking);
         });
 
         return $hands;
     }
-
 }

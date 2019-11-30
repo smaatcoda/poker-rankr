@@ -4,10 +4,10 @@ namespace SmaatCoda\PokerRankr\Entities;
 
 use Ds\Set;
 use SmaatCoda\PokerRankr\Interfaces\CollectionInterface;
-use SmaatCoda\PokerRankr\Interfaces\EntityInterface;
 
 /**
  * Class PokerHandCollection
+ *
  * @method  \ArrayIterator|PokerHand[] getIterator()
  * @package SmaatCoda\PokerRankr\Entities
  */
@@ -17,14 +17,19 @@ class PokerHandCollection implements CollectionInterface, \IteratorAggregate
 
     /**
      * AbstractCollection constructor.
-     * @param EntityInterface|null ...$hands
+     *
+     * @param PokerHand|null ...$hands
      */
     public function __construct(?PokerHand ...$hands)
     {
         $this->values = new Set(...[$hands]);
     }
+
     /**
-     * @param array $values
+     * Instantiates a new poker hand collection from an array
+     *
+     * @param array $hands
+     *
      * @return mixed|PokerHandCollection
      */
     public static function fromArray(array $hands)

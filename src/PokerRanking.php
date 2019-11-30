@@ -1,60 +1,105 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace SmaatCoda\PokerRankr;
 
-
+/**
+ * Class PokerRanking
+ *
+ * The result of an evaluation of a hand performed by PokerRankr.
+ *
+ * @package SmaatCoda\PokerRankr
+ */
 class PokerRanking
 {
-    public const ROYAL_FLUSH = 1000;
-    public const STRAIGHT_FLUSH = 900;
-    public const FOUR_OF_KIND = 800;
-    public const FULL_HOUSE = 700;
-    public const FLUSH = 600;
-    public const STRAIGHT = 500;
-    public const THREE_OF_KIND = 400;
-    public const TWO_PAIRS = 300;
-    public const PAIR = 200;
-    public const HIGH_CARD = 100;
+    /**
+     * @var int Numeric value of a hand ranking.
+     */
+    public const ROYAL_FLUSH = 10;
 
     /**
-     * @var integer
+     * @var int Numeric value of a hand ranking.
+     */
+    public const STRAIGHT_FLUSH = 9;
+
+    /**
+     * @var int Numeric value of a hand ranking.
+     */
+    public const FOUR_OF_KIND = 8;
+
+    /**
+     * @var int Numeric value of a hand ranking.
+     */
+    public const FULL_HOUSE = 7;
+
+    /**
+     * @var int Numeric value of a hand ranking.
+     */
+    public const FLUSH = 6;
+
+    /**
+     * @var int Numeric value of a hand ranking.
+     */
+    public const STRAIGHT = 5;
+
+    /**
+     * @var int Numeric value of a hand ranking.
+     */
+    public const THREE_OF_KIND = 4;
+
+    /**
+     * @var int Numeric value of a hand ranking.
+     */
+    public const TWO_PAIRS = 3;
+
+    /**
+     * @var int Numeric value of a hand ranking.
+     */
+    public const PAIR = 2;
+
+    /**
+     * @var int Numeric value of a hand ranking.
+     */
+    public const HIGH_CARD = 1;
+
+    /**
+     * @var integer Numeric value of the ranking.
      */
     protected $rankingValue;
 
     /**
-     * @var integer
+     * @var integer Numeric value of playing cards.
      */
     protected $mainCardsValue;
 
     /**
-     * @var integer
+     * @var integer Numeric value of the first kicker.
      */
     protected $kickerOneValue;
 
     /**
-     * @var integer
+     * @var integer Numeric value of the second kicker.
      */
     protected $kickerTwoValue;
 
     /**
-     * @var integer
+     * @var integer Numeric value of the third kicker.
      */
     protected $kickerThreeValue;
 
     /**
-     * @var integer
+     * @var integer Numeric value of the fourth kicker.
      */
     protected $kickerFourValue;
 
     /**
-     * TexasHoldemRank constructor.
-     * @param int $rankingValue The value of the rank
-     * @param int $mainCardsValue The collective value of played card ranks
-     * @param int $kickerOneValue The rank value of the first kicker
-     * @param int $kickerTwoValue The rank value of the second kicker
-     * @param int $kickerThreeValue The rank value of the third kicker
-     * @param int $kickerFourValue The rank value of the fourth kicker
+     * PokerRanking constructor.
+     *
+     * @param int $rankingValue Numeric value of the ranking.
+     * @param int $mainCardsValue Numeric value of playing cards.
+     * @param int $kickerOneValue Numeric value of the first kicker.
+     * @param int $kickerTwoValue Numeric value of the second kicker.
+     * @param int $kickerThreeValue Numeric value of the third kicker.
+     * @param int $kickerFourValue Numeric value of the fourth kicker.
      */
     public function __construct(
         int $rankingValue,
@@ -64,23 +109,25 @@ class PokerRanking
         int $kickerThreeValue = 0,
         int $kickerFourValue = 0
     ) {
-        $this->rankingValue = $rankingValue;
-        $this->mainCardsValue = $mainCardsValue;
-        $this->kickerOneValue = $kickerOneValue;
-        $this->kickerTwoValue = $kickerTwoValue;
+        $this->rankingValue     = $rankingValue;
+        $this->mainCardsValue   = $mainCardsValue;
+        $this->kickerOneValue   = $kickerOneValue;
+        $this->kickerTwoValue   = $kickerTwoValue;
         $this->kickerThreeValue = $kickerThreeValue;
-        $this->kickerFourValue = $kickerFourValue;
+        $this->kickerFourValue  = $kickerFourValue;
     }
 
     /**
+     * Returns the n  *  Numeric value of the ranking.
      * @return int
      */
-    public function getRankingValue(): int
+    public function getValue(): int
     {
         return $this->rankingValue;
     }
 
     /**
+     * Returns the n  *  Numeric value of playing cards.
      * @return int
      */
     public function getMainCardsValue(): int
@@ -89,6 +136,7 @@ class PokerRanking
     }
 
     /**
+     * Returns the numeric value of the first kicker.
      * @return int
      */
     public function getKickerOneValue(): int
@@ -97,6 +145,7 @@ class PokerRanking
     }
 
     /**
+     * Returns the numeric value of the second kicker.
      * @return int
      */
     public function getKickerTwoValue(): int
@@ -105,6 +154,7 @@ class PokerRanking
     }
 
     /**
+     * Returns the numeric value of the third kicker.
      * @return int
      */
     public function getKickerThreeValue(): int
@@ -113,6 +163,7 @@ class PokerRanking
     }
 
     /**
+     * Returns the numeric value of the fourth kicker.
      * @return int
      */
     public function getKickerFourValue(): int
@@ -121,14 +172,14 @@ class PokerRanking
     }
 
     /**
-     * Verifies if the current rank beats the compared one
+     * Verifies if the ranking beats another ranking.
      *
      * @param PokerRanking $pokerRank
      * @return bool
      */
     public function beats(PokerRanking $pokerRank): bool
     {
-        if ($this->getRankingValue() === $pokerRank->getRankingValue()) {
+        if ($this->getValue() === $pokerRank->getValue()) {
             if ($this->getMainCardsValue() === $pokerRank->getMainCardsValue()) {
                 if ($this->getKickerOneValue() === $pokerRank->getKickerOneValue()) {
                     if ($this->getKickerTwoValue() === $pokerRank->getKickerTwoValue()) {
@@ -146,8 +197,6 @@ class PokerRanking
             }
             return $this->getMainCardsValue() > $pokerRank->getMainCardsValue();
         }
-        return $this->getRankingValue() > $pokerRank->getRankingValue();
+        return $this->getValue() > $pokerRank->getValue();
     }
-
-
 }

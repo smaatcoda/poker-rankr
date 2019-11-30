@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SmaatCoda\PokerRankr;
 
@@ -53,7 +53,7 @@ class PokerRankrServiceProvider extends ServiceProvider
     }
 
     /**
-     * Publish the Config file from the Package to the App directory
+     * Registers the option of publishing the packages config file.
      */
     private function registerConfigPublisher()
     {
@@ -64,7 +64,7 @@ class PokerRankrServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get the services provided by the provider.
+     * Returns the services provided by the provider.
      *
      * @return array
      */

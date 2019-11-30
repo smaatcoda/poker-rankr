@@ -5,28 +5,107 @@ namespace SmaatCoda\PokerRankr\Entities;
 use SmaatCoda\PokerRankr\Exceptions\Exception;
 use SmaatCoda\PokerRankr\Interfaces\EntityInterface;
 
+/**
+ * Class PokerCard
+ *
+ * @package SmaatCoda\PokerRankr\Entities
+ */
 class PokerCard implements EntityInterface
 {
+    /**
+     * @var string Poker card suit string.
+     */
     public const SUIT_DIAMONDS = '♦';
-    public const SUIT_HEARTS   = '♥';
-    public const SUIT_SPADES   = '♠';
-    public const SUIT_CLUBS    = '♣';
 
+    /**
+     * @var string Poker card suit string.
+     */
+    public const SUIT_HEARTS = '♥';
+
+    /**
+     * @var string Poker card suit string.
+     */
+    public const SUIT_SPADES = '♠';
+
+    /**
+     * @var string Poker card suit string
+     */
+    public const SUIT_CLUBS = '♣';
+
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
     public const RANK_LOWER_ACE = 1;
-    public const RANK_TWO       = 2;
-    public const RANK_THREE     = 3;
-    public const RANK_FOUR      = 4;
-    public const RANK_FIVE      = 5;
-    public const RANK_SIX       = 6;
-    public const RANK_SEVEN     = 7;
-    public const RANK_EIGHT     = 8;
-    public const RANK_NINE      = 9;
-    public const RANK_TEN       = 10;
-    public const RANK_JACK      = 11;
-    public const RANK_QUEEN     = 12;
-    public const RANK_KING      = 13;
-    public const RANK_ACE       = 14;
 
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_TWO = 2;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_THREE = 3;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_FOUR = 4;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_FIVE = 5;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_SIX = 6;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_SEVEN = 7;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_EIGHT = 8;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_NINE = 9;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_TEN = 10;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_JACK = 11;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_QUEEN = 12;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_KING = 13;
+
+    /**
+     * @var int Poker card rank, numeric representation.
+     */
+    public const RANK_ACE = 14;
+
+    /**
+     * @var array A list of valid card rank numeric values.
+     */
     protected static $allowedRanks = [
         self::RANK_LOWER_ACE,
         self::RANK_TWO,
@@ -44,6 +123,9 @@ class PokerCard implements EntityInterface
         self::RANK_ACE,
     ];
 
+    /**
+     * @var array A list of valid card suits.
+     */
     protected static $allowedSuits = [
         self::SUIT_DIAMONDS,
         self::SUIT_HEARTS,
@@ -52,20 +134,21 @@ class PokerCard implements EntityInterface
     ];
 
     /**
-     * @var int
+     * @var int Card rank numeric representation.
      */
     protected $rank;
 
     /**
-     * @var string
+     * @var string Card suit.
      */
     protected $suit;
 
     /**
      * PokerCard constructor.
      *
-     * @param int $rank
-     * @param string $suit
+     * @param int $rank Card rank numeric representation.
+     * @param string $suit Card suit
+     *
      * @throws Exception
      */
     public function __construct(int $rank, string $suit)
@@ -83,6 +166,8 @@ class PokerCard implements EntityInterface
     }
 
     /**
+     * Returns the card's rank.
+     *
      * @return int
      */
     public function getRank(): int
@@ -91,6 +176,8 @@ class PokerCard implements EntityInterface
     }
 
     /**
+     * Sets the card's rank.
+     *
      * @param int $rank
      */
     public function setRank(int $rank): void
@@ -99,6 +186,8 @@ class PokerCard implements EntityInterface
     }
 
     /**
+     * Returns the card's suit.
+     *
      * @return string
      */
     public function getSuit(): string
@@ -107,6 +196,8 @@ class PokerCard implements EntityInterface
     }
 
     /**
+     * Sets the card's suit.
+     *
      * @param string $suit
      */
     public function setSuit(string $suit): void
@@ -114,7 +205,11 @@ class PokerCard implements EntityInterface
         $this->suit = $suit;
     }
 
-
+    /**
+     * Converts PokerCard to an array.
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         return [
@@ -124,8 +219,12 @@ class PokerCard implements EntityInterface
     }
 
     /**
+     * Instantiates a new PokerCard from an array.
+     *
      * @param array $data
+     *
      * @return PokerCard
+     *
      * @throws Exception
      */
     public static function fromArray(array $data): PokerCard

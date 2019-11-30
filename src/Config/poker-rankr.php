@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 return [
 
@@ -12,6 +12,7 @@ return [
 
     'texas-holdem' => [
         // Order is not to be changed
+
         \SmaatCoda\PokerRankr\RankingHandlers\TexasHoldemHandlers\RoyalFlushHandler::class,
         \SmaatCoda\PokerRankr\RankingHandlers\TexasHoldemHandlers\StraightFlushHandler::class,
         \SmaatCoda\PokerRankr\RankingHandlers\TexasHoldemHandlers\FourOfKindHandler::class,

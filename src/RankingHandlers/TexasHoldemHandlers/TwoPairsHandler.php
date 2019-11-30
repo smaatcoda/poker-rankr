@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace SmaatCoda\PokerRankr\RankingHandlers\TexasHoldemHandlers;
 
@@ -8,11 +7,19 @@ use SmaatCoda\PokerRankr\Interfaces\RankingHandlerInterface;
 use SmaatCoda\PokerRankr\PokerRanking;
 use SmaatCoda\PokerRankr\RankingHandlers\RankingHandlerTrait;
 
+/**
+ * Class TwoPairsHandler
+ *
+ * @package SmaatCoda\PokerRankr\RankingHandlers\TexasHoldemHandlers
+ */
 class TwoPairsHandler implements RankingHandlerInterface
 {
     use RankingHandlerTrait;
     use TexasHoldemHelperTrait;
 
+    /**
+     * @inheritDoc
+     */
     public function handle(PokerHand $hand): PokerRanking
     {
         $ranks = $this->extractRanks($hand);

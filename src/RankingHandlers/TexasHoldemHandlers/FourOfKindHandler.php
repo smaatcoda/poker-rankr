@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace SmaatCoda\PokerRankr\RankingHandlers\TexasHoldemHandlers;
 
@@ -8,11 +7,19 @@ use SmaatCoda\PokerRankr\Interfaces\RankingHandlerInterface;
 use SmaatCoda\PokerRankr\PokerRanking;
 use SmaatCoda\PokerRankr\RankingHandlers\RankingHandlerTrait;
 
+/**
+ * Class FourOfKindHandler
+ *
+ * @package SmaatCoda\PokerRankr\RankingHandlers\TexasHoldemHandlers
+ */
 class FourOfKindHandler implements RankingHandlerInterface
 {
     use RankingHandlerTrait;
     use TexasHoldemHelperTrait;
 
+    /**
+     * @inheritDoc
+     */
     public function handle(PokerHand $hand): PokerRanking
     {
         $ranks = $this->extractRanks($hand);

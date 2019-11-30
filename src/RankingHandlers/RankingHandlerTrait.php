@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SmaatCoda\PokerRankr\RankingHandlers;
 
@@ -16,6 +16,8 @@ trait RankingHandlerTrait
     protected $successor;
 
     /**
+     * Sets the successor handler to which a hand will be passed in case of not detecting a specified combination of cards.
+     *
      * @param mixed $successor
      */
     public function setSuccessor(RankingHandlerInterface $successor): void
@@ -24,6 +26,8 @@ trait RankingHandlerTrait
     }
 
     /**
+     * Delegates handling of a hand to the successor handler.
+     *
      * @param PokerHand $hand
      * @return PokerRanking
      * @throws Exception
