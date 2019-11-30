@@ -1,9 +1,9 @@
-###PokerRankr - a poker hand ranking engine.
+### PokerRankr - a poker hand ranking engine.
 The package can be installed by running the following command: 
 
 `composer require smaatcoda/poker-rankr`
 
-####Installed in a Laravel-based app?
+#### Installed in a Laravel-based app?
 If installed in a Laravel-based application, feel free to leverage
 Laravel's service container and Facades. To do that, add to your `config/app.php` 
 file:
@@ -44,7 +44,7 @@ Also you can use PokerRankr facade:
 PokerRankr::evaluateHand($hand);
 ```
 
-####Installed in a plain PHP app?
+#### Installed in a plain PHP app?
 If installed in a non-Laravel application, you can instantiate `PokerRankr`
 by first instantiating `PokerRankr` Config and passing a set of handlers to 
 `PokerRankr` constructor like so:
@@ -57,7 +57,7 @@ $ranker = new PokerRankr($config->get('texas-holdem'));
 
 $ranker->evaluateHand($hand);
 ```
-####Usage
+#### Usage
 Use PokerRankr to evaluate rankings of poker hands or to sort collections
 of poker hands. PokerCard entity provides a set of constants for each
 of common playing card ranks and suits
@@ -82,5 +82,5 @@ $ranker->sortHands($handsCollection);
 
 $winnerHand = $handsCollection->first();
 ```
-####Customization
+#### Customization
 You can write your own set of RankingHandlers as long as they implement `RankingHandlerInterface`.
