@@ -179,24 +179,30 @@ class PokerRanking
      */
     public function beats(PokerRanking $pokerRank): bool
     {
-        if ($this->getValue() === $pokerRank->getValue()) {
-            if ($this->getMainCardsValue() === $pokerRank->getMainCardsValue()) {
-                if ($this->getKickerOneValue() === $pokerRank->getKickerOneValue()) {
-                    if ($this->getKickerTwoValue() === $pokerRank->getKickerTwoValue()) {
-                        if ($this->getKickerThreeValue() === $pokerRank->getKickerThreeValue()) {
-                            if ($this->getKickerFourValue() === $pokerRank->getKickerFourValue()) {
-                                return false;
-                            }
-                            return $this->getKickerFourValue() > $pokerRank->getKickerFourValue();
-                        }
-                        return $this->getKickerThreeValue() > $pokerRank->getKickerThreeValue();
-                    }
-                    return $this->getKickerTwoValue() > $pokerRank->getKickerTwoValue();
-                }
-                return $this->getKickerOneValue() > $pokerRank->getKickerOneValue();
-            }
+        if ($this->getValue() !== $pokerRank->getValue()) {
+            return $this->getValue() > $pokerRank->getValue();
+        }
+
+        if ($this->getMainCardsValue() !== $pokerRank->getMainCardsValue()) {
             return $this->getMainCardsValue() > $pokerRank->getMainCardsValue();
         }
-        return $this->getValue() > $pokerRank->getValue();
+
+        if ($this->getKickerOneValue() !== $pokerRank->getKickerOneValue()) {
+            return $this->getKickerOneValue() < $pokerRank->getKickerOneValue();
+        }
+
+        if ($this->getKickerTwoValue() !== $pokerRank->getKickerTwoValue()) {
+            return $this->getKickerTwoValue() > $pokerRank->getKickerTwoValue();
+        }
+
+        if ($this->getKickerThreeValue() !== $pokerRank->getKickerThreeValue()) {
+            return $this->getKickerThreeValue() > $pokerRank->getKickerThreeValue();
+        }
+
+        if ($this->getKickerFourValue() !== $pokerRank->getKickerFourValue()) {
+            return $this->getKickerFourValue() > $pokerRank->getKickerFourValue();
+        }
+
+        return false;
     }
 }
