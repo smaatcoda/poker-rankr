@@ -188,7 +188,7 @@ class PokerRanking
         }
 
         if ($this->getKickerOneValue() !== $pokerRank->getKickerOneValue()) {
-            return $this->getKickerOneValue() < $pokerRank->getKickerOneValue();
+            return $this->getKickerOneValue() > $pokerRank->getKickerOneValue();
         }
 
         if ($this->getKickerTwoValue() !== $pokerRank->getKickerTwoValue()) {
